@@ -1,350 +1,793 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gabriel S. Mariano | IT Portfolio</title>
   <link rel="icon" type="image/x-icon" href="logo.ico">
-  <meta name="description" content="Portfolio of Gabriel S. Mariano, Information Technology graduate and aspiring IT professional.">
-  <style>
-    :root{
-      --bg:#0a0d12;
-      --panel:#11161e;
-      --panel2:#151b24;
-      --text:#f4f7fb;
-      --muted:#9aa6b5;
-      --line:#26303d;
-      --accent:#7c5cff;
-      --accent2:#19d3ae;
-      --max:1120px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:
-        radial-gradient(circle at 80% 10%,rgba(124,92,255,.16),transparent 28%),
-        radial-gradient(circle at 10% 30%,rgba(25,211,174,.08),transparent 24%),
-        var(--bg);
-      color:var(--text);line-height:1.6;
-    }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
-    nav{
-      position:fixed;top:0;left:0;width:100%;z-index:20;
-      background:rgba(10,13,18,.76);backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(255,255,255,.06)
-    }
-    .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
-    .logo span{color:var(--accent)}
-    .nav-links{display:flex;gap:26px;color:#c7cfda;font-size:.92rem}
-    .nav-links a:hover{color:white}
-    .menu{display:none;background:none;border:0;color:white;font-size:1.5rem}
-    section{padding:105px 0}
-    .hero{min-height:100vh;display:flex;align-items:center;padding-top:130px}
-    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:70px;align-items:center}
-    .eyebrow{color:var(--accent2);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;margin-bottom:18px}
-    h1{font-size:clamp(3rem,7vw,6rem);line-height:.98;letter-spacing:-.065em;margin-bottom:24px}
-    h1 span{background:linear-gradient(90deg,#fff,#9d91ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{color:var(--muted);font-size:1.1rem;max-width:680px}
-    .actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
-    .btn{padding:12px 18px;border-radius:10px;border:1px solid var(--line);font-weight:700;transition:.2s}
-    .btn.primary{background:white;color:#0a0d12;border-color:white}
-    .btn:hover{transform:translateY(-2px)}
-    .profile-card{
-      background:linear-gradient(145deg,rgba(124,92,255,.18),rgba(17,22,30,.9));
-      border:1px solid var(--line);border-radius:24px;padding:28px;
-      box-shadow:0 20px 80px rgba(0,0,0,.3)
-    }
-    .avatar {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 20px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #28203e, #10151e);
-  border: 1px solid #3a3157;
-}
+  <meta name="description" content="Portfolio of Gabriel S. Mariano, Information Technology graduate and aspiring IT professional specializing in Support, Development, and Cybersecurity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    /* Prevent FOUC (Flash of Unstyled Content) by setting theme prior to render */
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 
-  .avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-    .mini-info{margin-top:20px;color:var(--muted);font-size:.92rem}
-    .mini-info strong{color:white;display:block;font-size:1rem}
-    .section-head{margin-bottom:42px}
-    .section-head .eyebrow{margin-bottom:10px}
-    h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.045em}
-    .lead{color:var(--muted);max-width:700px;margin-top:10px}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .card{
-      background:rgba(17,22,30,.8);border:1px solid var(--line);border-radius:18px;padding:26px
+  <style>
+    :root {
+      /* Light Palette */
+      --bg-primary: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-accent: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --accent-primary: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-secondary: #0d9488;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+      --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --nav-bg: rgba(255, 255, 255, 0.82);
+      --avatar-border: linear-gradient(135deg, #6366f1, #0d9488);
+      --hero-glow-1: rgba(99, 102, 241, 0.08);
+      --hero-glow-2: rgba(13, 148, 136, 0.06);
     }
-    .card h3{margin-bottom:10px}
-    .card p{color:var(--muted)}
-    .timeline{display:grid;gap:18px}
-    .timeline-item{position:relative;padding:24px 24px 24px 28px;border-left:2px solid #332a56;background:rgba(17,22,30,.65);border-radius:0 16px 16px 0}
-    .timeline-item:before{content:"";position:absolute;left:-7px;top:29px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
-    .timeline-item .date{color:var(--accent2);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-    .timeline-item h3{margin:6px 0}
-    .timeline-item p{color:var(--muted)}
-    .skills{display:flex;flex-wrap:wrap;gap:10px}
-    .tag{padding:9px 13px;border:1px solid var(--line);background:var(--panel);border-radius:999px;color:#d6dde7;font-size:.9rem}
-    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .project{min-height:250px;display:flex;flex-direction:column;justify-content:space-between}
-    .project-top{display:flex;justify-content:space-between;gap:16px}
-    .project-number{font-size:.8rem;color:#626d7b}
-    .project h3{font-size:1.35rem;margin:12px 0 8px}
-    .project p{color:var(--muted)}
-    .project .stack{margin-top:20px;color:#bdb4ff;font-size:.85rem}
-    .contact{display:grid;grid-template-columns:1fr .9fr;gap:20px}
-    .contact-list{display:grid;gap:12px;margin-top:22px}
-    .contact-item{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
-    .contact-item small{display:block;color:#697584;margin-bottom:3px}
-    footer{border-top:1px solid var(--line);padding:28px 0;color:#697584;font-size:.88rem}
-    .reveal{opacity:0;transform:translateY(20px);transition:.7s ease}
-    .reveal.show{opacity:1;transform:none}
-    @media(max-width:800px){
-      .nav-links{display:none}
-      .menu{display:block}
-      .hero-grid,.about-grid,.contact{grid-template-columns:1fr}
-      .hero{padding-top:110px}
-      .profile-card{max-width:420px}
-      .projects{grid-template-columns:1fr}
+
+    [data-theme="dark"] {
+      /* Dark Palette */
+      --bg-primary: #090d16;
+      --bg-surface: #111827;
+      --bg-surface-elevated: #1f293d;
+      --border-color: #1f293d;
+      --border-accent: #374151;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --accent-primary: #818cf8;
+      --accent-hover: #a5b4fc;
+      --accent-secondary: #2dd4bf;
+      --accent-glow: rgba(129, 140, 248, 0.2);
+      --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --card-shadow-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.7);
+      --nav-bg: rgba(9, 13, 22, 0.82);
+      --avatar-border: linear-gradient(135deg, #818cf8, #2dd4bf);
+      --hero-glow-1: rgba(129, 140, 248, 0.12);
+      --hero-glow-2: rgba(45, 212, 191, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background lighting */
+    .bg-ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 85% 15%, var(--hero-glow-1), transparent 35%),
+        radial-gradient(circle at 15% 45%, var(--hero-glow-2), transparent 30%);
+    }
+
+    /* Micro-interactions & animations */
+    .theme-transition * {
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-nav {
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-style {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-style:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      padding: 3px;
+      border-radius: 1.25rem;
+      background: var(--avatar-border);
+      box-shadow: 0 10px 25px -5px var(--accent-glow);
+    }
+
+    /* Mobile drawer slide animation */
+    .mobile-drawer {
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-accent);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-subtle);
     }
   </style>
 </head>
-<body>
-  <nav>
-    <div class="container nav-inner">
-      <a class="logo" href="#home">Gabriel<span>.</span></a>
-      <div class="nav-links">
-        <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a>
-        <a href="#projects">Projects</a><a href="#contact">Contact</a>
+<body class="relative min-h-screen theme-transition flex flex-col justify-between antialiased">
+
+  <!-- Ambient Light Effect -->
+  <div class="bg-ambient"></div>
+
+  <!-- Minimalist Header -->
+  <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative z-10">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="group flex items-center gap-1.5 text-xl font-extrabold tracking-tight" style="color: var(--text-main);">
+        <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-500 group-hover:scale-105 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </span>
+        <span>Gabriel<span style="color: var(--accent-primary);">.</span></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold" style="color: var(--text-muted);">
+        <a href="#about" class="hover:text-indigo-500 transition-colors">About</a>
+        <a href="#experience" class="hover:text-indigo-500 transition-colors">Experience</a>
+        <a href="#skills" class="hover:text-indigo-500 transition-colors">Skills</a>
+        <a href="#projects" class="hover:text-indigo-500 transition-colors">Projects</a>
+        <a href="#contact" class="hover:text-indigo-500 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Actions: Theme Switcher & Mobile Menu Trigger -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" aria-label="Toggle dark/light mode" class="p-2.5 rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="moonIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Drawer Toggle Button -->
+        <button id="mobileMenuBtn" aria-label="Toggle mobile menu" class="md:hidden p-2.5 rounded-xl border focus:outline-none focus:ring-2 focus:ring-indigo-500/50" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
       </div>
-      <button class="menu" aria-label="Open menu" onclick="toggleMenu()">☰</button>
     </div>
-  </nav>
+  </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">Information Technology Graduate</div>
-          <h1>Hi, I'm <span>Gabriel Mariano.</span></h1>
-          <p>
-            A recent Information Technology graduate from the Technological Institute of the Philippines
-            with hands-on experience in development, troubleshooting, LMS support, and software projects.
-            I’m adaptable, detail-oriented, and always willing to learn.
+  <!-- Mobile Side Drawer Overlay -->
+  <div id="drawerOverlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside id="mobileDrawer" class="mobile-drawer fixed top-0 right-0 h-full w-72 z-50 p-6 flex flex-col justify-between" style="background: var(--bg-surface); border-left: 1px solid var(--border-color);">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b" style="border-color: var(--border-color);">
+        <span class="font-bold text-lg" style="color: var(--text-main);">Navigation</span>
+        <button id="closeDrawerBtn" aria-label="Close menu" class="p-2 rounded-lg" style="color: var(--text-muted);">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4 mt-6 text-base font-semibold" style="color: var(--text-main);">
+        <a href="#about" class="mobile-nav-link py-2 px-3 rounded-lg transition-colors hover:bg-indigo-500/10">About</a>
+        <a href="#experience" class="mobile-nav-link py-2 px-3 rounded-lg transition-colors hover:bg-indigo-500/10">Experience</a>
+        <a href="#skills" class="mobile-nav-link py-2 px-3 rounded-lg transition-colors hover:bg-indigo-500/10">Skills</a>
+        <a href="#projects" class="mobile-nav-link py-2 px-3 rounded-lg transition-colors hover:bg-indigo-500/10">Projects</a>
+        <a href="#contact" class="mobile-nav-link py-2 px-3 rounded-lg transition-colors hover:bg-indigo-500/10">Contact</a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t text-xs text-center" style="border-color: var(--border-color); color: var(--text-subtle);">
+      © Gabriel S. Mariano
+    </div>
+  </aside>
+
+  <!-- Hero Section -->
+  <main id="home" class="relative z-10 pt-28 lg:pt-36 pb-20">
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Hero Introduction Text -->
+        <div class="lg:col-span-7 space-y-6 reveal">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase border" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--accent-secondary);">
+            <span class="w-2 h-2 rounded-full animate-pulse" style="background-color: var(--accent-secondary);"></span>
+            Information Technology Graduate
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none" style="color: var(--text-main);">
+            Hi, I'm <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-400 bg-clip-text text-transparent">Gabriel Mariano.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg leading-relaxed max-w-2xl" style="color: var(--text-muted);">
+            A passionate IT graduate from the Technological Institute of the Philippines with practical experience in full-stack development, technical troubleshooting, LMS support, and software systems. Adaptable, detail-oriented, and ready to solve real-world technical challenges.
           </p>
-          <div class="actions">
-            <a class="btn primary" href="#projects">View My Work</a>
-            <a class="btn" href="#contact">Let's Connect</a>
+
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0" style="background: var(--accent-primary); color: #ffffff;">
+              <span>View My Work</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border transition-all duration-200 hover:-translate-y-0.5" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">
+              <span>Let's Connect</span>
+            </a>
           </div>
         </div>
-        <div class="profile-card reveal">
-          <div class="avatar">
-            <img src="Profile.jpg" alt="Gabriel S. Mariano">
-          </div>
 
-          <div class="mini-info">
-            <strong>Education</strong>
-            BS Information Technology · TIP Quezon City
-          </div>
+        <!-- Profile Card & Modern Avatar Container -->
+        <div class="lg:col-span-5 reveal">
+          <div class="card-style rounded-3xl p-6 sm:p-8 space-y-6">
+            
+            <!-- Avatar Frame -->
+            <div class="avatar-wrapper mx-auto max-w-[260px]">
+              <div class="relative w-full aspect-square rounded-[1rem] overflow-hidden" style="background: var(--bg-surface-elevated);">
+                <!-- Profile Image with Fallback handling -->
+                <img id="profileImg" src="Profile.jpg" alt="Gabriel S. Mariano" class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
+                
+                <!-- Fallback Initial Avatar -->
+                <div id="avatarFallback" class="hidden absolute inset-0 flex-col items-center justify-center text-center p-4" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(13,148,136,0.2));">
+                  <span class="text-5xl font-black tracking-widest text-indigo-500">GM</span>
+                  <span class="text-xs mt-2 font-medium" style="color: var(--text-muted);">Gabriel Mariano</span>
+                </div>
+              </div>
+            </div>
 
-          <div class="mini-info">
-            <strong>Focus</strong>
-            IT Support · Development · Cybersecurity
-          </div>
+            <!-- Profile Info Metadata Cards -->
+            <div class="grid grid-cols-1 gap-3 pt-2">
+              <div class="p-3.5 rounded-xl border flex items-start gap-3" style="background: var(--bg-surface-elevated); border-color: var(--border-color);">
+                <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-500">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs uppercase font-bold tracking-wider" style="color: var(--text-subtle);">Education</div>
+                  <div class="text-sm font-semibold" style="color: var(--text-main);">BS Information Technology</div>
+                  <div class="text-xs" style="color: var(--text-muted);">TIP Quezon City</div>
+                </div>
+              </div>
 
-          <div class="mini-info">
-            <strong>Based in</strong>
-            San Mateo, Rizal, Philippines
+              <div class="p-3.5 rounded-xl border flex items-start gap-3" style="background: var(--bg-surface-elevated); border-color: var(--border-color);">
+                <div class="p-2 rounded-lg bg-teal-500/10 text-teal-500">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs uppercase font-bold tracking-wider" style="color: var(--text-subtle);">Focus Area</div>
+                  <div class="text-sm font-semibold" style="color: var(--text-main);">IT Support · Web Dev · Security</div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl border flex items-start gap-3" style="background: var(--bg-surface-elevated); border-color: var(--border-color);">
+                <div class="p-2 rounded-lg bg-purple-500/10 text-purple-500">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs uppercase font-bold tracking-wider" style="color: var(--text-subtle);">Based In</div>
+                  <div class="text-sm font-semibold" style="color: var(--text-main);">San Mateo, Rizal, Philippines</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
       </div>
     </section>
 
-    <section id="about">
-      <div class="container reveal">
-        <div class="section-head">
-          <div class="eyebrow">About Me</div>
-          <h2>Building, troubleshooting, learning.</h2>
-          <p class="lead">My experience combines software development with practical technical support and problem-solving.</p>
+    <!-- About Section -->
+    <section id="about" class="pt-24 pb-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="reveal mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--accent-secondary);">About Me</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1" style="color: var(--text-main);">Building, troubleshooting, learning.</h2>
+          <p class="mt-3 text-base sm:text-lg max-w-2xl" style="color: var(--text-muted);">
+            Combining hands-on software engineering with practical technical support and real-world system debugging.
+          </p>
         </div>
-        <div class="about-grid">
-          <div class="card">
-            <h3>Who I Am</h3>
-            <p>
-              I’m an IT graduate who enjoys learning new technologies and solving technical problems.
-              During my OJT, I worked with both a development team and an LMS support team, giving me
-              experience across development, troubleshooting, permissions, and user support.
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card-style rounded-2xl p-6 sm:p-8 space-y-3 reveal">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold" style="color: var(--text-main);">Who I Am</h3>
+            <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+              I'm an Information Technology graduate passionate about continuously discovering new frameworks and dissecting technical challenges. During my Internship, I gained dual-role experience working closely with both software engineering developers and Learning Management System (LMS) support teams.
             </p>
           </div>
-          <div class="card">
-            <h3>What I Bring</h3>
-            <p>
-              Adaptability, attention to detail, willingness to learn, and a practical approach to
-              troubleshooting. I’m interested in growing through real-world IT work and continuously
-              improving my technical and communication skills.
+
+          <div class="card-style rounded-2xl p-6 sm:p-8 space-y-3 reveal">
+            <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center font-bold">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold" style="color: var(--text-main);">What I Bring</h3>
+            <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+              I offer quick adaptability, meticulous attention to detail, strong analytical capability for root-cause diagnosis, and proactive communication. I thrive when delivering reliable solutions—whether fixing backend routing issues or setting up secure user permissions.
             </p>
           </div>
         </div>
+
       </div>
     </section>
 
-    <section id="experience">
-      <div class="container reveal">
-        <div class="section-head">
-          <div class="eyebrow">Experience</div>
-          <h2>Hands-on experience.</h2>
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="reveal mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--accent-secondary);">Experience</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1" style="color: var(--text-main);">Hands-on Industry Work</h2>
         </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="date">On-the-Job Training</div>
-            <h3>Development & LMS Support · Nephila Web Technology</h3>
-            <p>
-              Worked across development and LMS support. Contributed to a Laravel-based HR payroll/payment
-              system and helped develop its UI. Troubleshot a routing issue that prevented a UI page from
-              displaying correctly, identified the incorrect/missing route name, fixed it, and retested.
-            </p>
+
+        <div class="relative pl-6 sm:pl-8 border-l-2 space-y-10" style="border-color: var(--border-color);">
+          
+          <!-- Experience Item 1 -->
+          <article class="relative reveal">
+            <!-- Timeline Dot -->
+            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 ring-4" style="background: var(--accent-primary); border-color: var(--bg-primary); ring-color: var(--bg-primary);"></div>
+            
+            <div class="card-style rounded-2xl p-6 sm:p-8 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md" style="background: var(--bg-surface-elevated); color: var(--accent-secondary);">On-The-Job Training</span>
+                <span class="text-xs font-medium" style="color: var(--text-subtle);">Nephila Web Technology</span>
+              </div>
+              <h3 class="text-xl font-bold" style="color: var(--text-main);">Full-Stack Development & System Diagnostics</h3>
+              <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+                Contributed to a Laravel-based HR Payroll and Payment Management System. Designed and enhanced UI components while diagnosing complex front-end and back-end integration issues. Identified and resolved critical routing bugs that prevented key user pages from rendering correctly.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">Laravel</span>
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">PHP</span>
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">Routing Debugging</span>
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">UI Testing</span>
+              </div>
+            </div>
           </article>
-          <article class="timeline-item">
-            <div class="date">LMS Support</div>
-            <h3>Permissions & Technical Troubleshooting</h3>
-            <p>
-              Investigated an LMS permission issue where a teacher account could receive student-level access.
-              Helped establish the intended teacher permissions for viewing, editing, and scoring while
-              supporting the team through troubleshooting and implementation.
-            </p>
+
+          <!-- Experience Item 2 -->
+          <article class="relative reveal">
+            <!-- Timeline Dot -->
+            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 ring-4" style="background: var(--accent-secondary); border-color: var(--bg-primary); ring-color: var(--bg-primary);"></div>
+            
+            <div class="card-style rounded-2xl p-6 sm:p-8 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md" style="background: var(--bg-surface-elevated); color: var(--accent-secondary);">Technical Support</span>
+                <span class="text-xs font-medium" style="color: var(--text-subtle);">LMS Platform Support</span>
+              </div>
+              <h3 class="text-xl font-bold" style="color: var(--text-main);">Permissions Engineering & User Support</h3>
+              <p class="text-sm sm:text-base leading-relaxed" style="color: var(--text-muted);">
+                Investigated role-based access control (RBAC) issues within the LMS platform where instructor accounts inadvertently received student privilege boundaries. Established correct permission matrices for viewing, editing, and grading while providing tier-2 technical resolution.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">LMS Administration</span>
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">Access Control (RBAC)</span>
+                <span class="text-xs px-2.5 py-1 rounded-full border" style="border-color: var(--border-color); color: var(--text-subtle);">User Escalations</span>
+              </div>
+            </div>
           </article>
+
         </div>
+
       </div>
     </section>
 
-    <section id="skills">
-      <div class="container reveal">
-        <div class="section-head">
-          <div class="eyebrow">Technical Skills</div>
-          <h2>Tools I work with.</h2>
-        </div>
-        <div class="skills">
-          <span class="tag">Java</span><span class="tag">C / C++</span><span class="tag">C#</span>
-          <span class="tag">Python</span><span class="tag">R</span><span class="tag">PHP</span>
-          <span class="tag">SQL</span><span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>
-          <span class="tag">Laravel</span><span class="tag">React Native</span><span class="tag">Flutter</span>
-          <span class="tag">Ionic</span><span class="tag">Unity</span><span class="tag">Roblox Studio</span>
-          <span class="tag">Figma</span><span class="tag">Networking</span><span class="tag">System Administration</span>
-          <span class="tag">Windows Troubleshooting</span><span class="tag">UI/UX</span>
-          <span class="tag">Cybersecurity Fundamentals</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container reveal">
-        <div class="section-head">
-          <div class="eyebrow">Selected Projects</div>
-          <h2>Things I've built.</h2>
-          <p class="lead">A selection of academic and personal projects across games, websites, mobile applications, and learning tools.</p>
-        </div>
-        <div class="projects">
-          <article class="card project">
-            <div><div class="project-top"><span class="project-number">01</span><span>Unity / C#</span></div>
-              <h3>Arnis Arena</h3>
-              <p>A multiplayer Filipino martial-arts game based on Arnis. Players fight using Arnis sticks and progress through belt ranks after reaching the required wins.</p>
-            </div><div class="stack">Unity · C# · Game Development · UI</div>
-          </article>
-          <article class="card project">
-            <div><div class="project-top"><span class="project-number">02</span><span>Game Development</span></div>
-              <h3>The Haunted Enigma</h3>
-              <p>An interactive game project focused on exploration, puzzles, and a mystery-driven experience.</p>
-            </div><div class="stack">Unity · C#</div>
-          </article>
-          <article class="card project">
-            <div><div class="project-top"><span class="project-number">03</span><span>Web Development</span></div>
-              <h3>Likha</h3>
-              <p>A cultural clothing website concept designed to showcase Filipino-inspired clothing and visual presentation.</p>
-            </div><div class="stack">HTML · CSS · JavaScript · UI/UX</div>
-          </article>
-          <article class="card project">
-            <div><div class="project-top"><span class="project-number">04</span><span>Web Development</span></div>
-              <h3>PagesTuners</h3>
-              <p>A bookstore website project focused on browsing and presenting books through a clean web interface.</p>
-            </div><div class="stack">Web Development · UI/UX</div>
-          </article>
-          <article class="card project">
-            <div><div class="project-top"><span class="project-number">05</span><span>Educational App</span></div>
-              <h3>Solar System Learning App</h3>
-              <p>An educational application designed to make learning about the solar system more interactive.</p>
-            </div><div class="stack">Mobile Development · UI/UX</div>
-          </article>
-          <article class="card project">
-            <div><div class="project-top"><span class="project-number">06</span><span>Prototype</span></div>
-              <h3>Hot Wheels Prototype</h3>
-              <p>A game prototype exploring vehicle-focused gameplay and interactive 3D environments.</p>
-            </div><div class="stack">Unity · C# · Prototyping</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container reveal">
-        <div class="section-head">
-          <div class="eyebrow">Contact</div>
-          <h2>Let's connect.</h2>
-          <p class="lead">Interested in discussing an IT opportunity, project, or collaboration? Replace the placeholders below with your actual contact details.</p>
-        </div>
-        <div class="contact">
-          <div class="card">
-            <h3>Currently growing.</h3>
-            <p>
-              I’m looking for opportunities where I can apply my IT background, develop stronger technical
-              skills, contribute to a team, and gain meaningful industry experience.
-            </p>
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="reveal mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--accent-secondary);">Technical Skills</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1" style="color: var(--text-main);">Tools & Technologies</h2>
           </div>
-          <div class="contact-list">
-            <a class="contact-item" href="mailto:gablmr07012003@gmail.com"><small>Email</small>gablmr07012003@gmail.com</a>
-            <a class="contact-item" href="https://www.linkedin.com/in/gabriel-mariano-774708391/?isSelfProfile=true" onclick="return false;"><small>LinkedIn</small>Gabriel Mariano</a>
-            <a class="contact-item" href="https://github.com/Gaxz-hub" onclick="return false;"><small>GitHub</small>Gaxz-hub</a>
+          
+          <!-- Category Filter Tabs -->
+          <div id="skillsFilter" class="flex flex-wrap gap-1.5 p-1 rounded-xl border text-xs font-semibold" style="background: var(--bg-surface); border-color: var(--border-color);">
+            <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-lg transition-all" style="background: var(--accent-primary); color: #fff;">All</button>
+            <button data-filter="lang" class="filter-btn px-3 py-1.5 rounded-lg transition-all" style="color: var(--text-muted);">Languages</button>
+            <button data-filter="web" class="filter-btn px-3 py-1.5 rounded-lg transition-all" style="color: var(--text-muted);">Web/Mobile</button>
+            <button data-filter="tools" class="filter-btn px-3 py-1.5 rounded-lg transition-all" style="color: var(--text-muted);">Tools/IT</button>
           </div>
         </div>
+
+        <div id="skillsGrid" class="flex flex-wrap gap-3 reveal">
+          <!-- Languages -->
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Java</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">C / C++</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">C#</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Python</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">PHP</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">R</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">SQL</span>
+          <span data-category="lang" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">JavaScript</span>
+          
+          <!-- Web & Mobile -->
+          <span data-category="web" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">HTML / CSS</span>
+          <span data-category="web" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Laravel</span>
+          <span data-category="web" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">React Native</span>
+          <span data-category="web" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Flutter</span>
+          <span data-category="web" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Ionic</span>
+          
+          <!-- Tools & Game Engines -->
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Unity</span>
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Roblox Studio</span>
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Figma</span>
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Networking</span>
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">System Administration</span>
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Windows Troubleshooting</span>
+          <span data-category="tools" class="skill-tag px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200 cursor-default hover:scale-105" style="background: var(--bg-surface); border-color: var(--border-color); color: var(--text-main);">Cybersecurity Fundamentals</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Selected Projects Section -->
+    <section id="projects" class="py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="reveal mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--accent-secondary);">Portfolio</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-1" style="color: var(--text-main);">Selected Projects</h2>
+          <p class="mt-2 text-base" style="color: var(--text-muted);">A showcase of games, web applications, mobile tools, and prototypes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Project 1 -->
+          <article class="card-style rounded-2xl p-6 flex flex-col justify-between group reveal">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold mb-4" style="color: var(--text-subtle);">
+                <span>01 · Game Dev</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-500">Unity / C#</span>
+              </div>
+              <h3 class="text-xl font-bold group-hover:text-indigo-500 transition-colors" style="color: var(--text-main);">Arnis Arena</h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                A 3D multiplayer fighting game highlighting Filipino cultural martial arts. Features rank progression based on win milestones and specialized Arnis stick combat mechanics.
+              </p>
+            </div>
+            <div class="pt-6 mt-4 border-t text-xs font-semibold" style="border-color: var(--border-color); color: var(--accent-primary);">
+              Unity · C# · Multiplayer · UI Design
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card-style rounded-2xl p-6 flex flex-col justify-between group reveal">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold mb-4" style="color: var(--text-subtle);">
+                <span>02 · Game Dev</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-500">Unity / C#</span>
+              </div>
+              <h3 class="text-xl font-bold group-hover:text-indigo-500 transition-colors" style="color: var(--text-main);">The Haunted Enigma</h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                An interactive narrative mystery game focusing on environment exploration, puzzle-solving logic, atmospheric lighting, and sound integration.
+              </p>
+            </div>
+            <div class="pt-6 mt-4 border-t text-xs font-semibold" style="border-color: var(--border-color); color: var(--accent-primary);">
+              Unity · C# · Puzzle Logic
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card-style rounded-2xl p-6 flex flex-col justify-between group reveal">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold mb-4" style="color: var(--text-subtle);">
+                <span>03 · Web App</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-500">Web Dev</span>
+              </div>
+              <h3 class="text-xl font-bold group-hover:text-teal-500 transition-colors" style="color: var(--text-main);">Likha</h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                A modern e-commerce conceptual platform celebrating traditional Filipino-inspired attire with elegant visual catalog navigation and fluid UI/UX design.
+              </p>
+            </div>
+            <div class="pt-6 mt-4 border-t text-xs font-semibold" style="border-color: var(--border-color); color: var(--accent-primary);">
+              HTML · CSS · JavaScript · UI/UX
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="card-style rounded-2xl p-6 flex flex-col justify-between group reveal">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold mb-4" style="color: var(--text-subtle);">
+                <span>04 · Web App</span>
+                <span class="px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-500">Web Dev</span>
+              </div>
+              <h3 class="text-xl font-bold group-hover:text-teal-500 transition-colors" style="color: var(--text-main);">PagesTuners</h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                An online bookstore web application designed for seamlessly discovering books, managing reader lists, and exploring customized genre recommendations.
+              </p>
+            </div>
+            <div class="pt-6 mt-4 border-t text-xs font-semibold" style="border-color: var(--border-color); color: var(--accent-primary);">
+              JavaScript · Web Interface · UI/UX
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="card-style rounded-2xl p-6 flex flex-col justify-between group reveal">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold mb-4" style="color: var(--text-subtle);">
+                <span>05 · Mobile App</span>
+                <span class="px-2 py-0.5 rounded-md bg-purple-500/10 text-purple-500">Mobile Dev</span>
+              </div>
+              <h3 class="text-xl font-bold group-hover:text-purple-500 transition-colors" style="color: var(--text-main);">Solar System Learning App</h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                An interactive educational application for students featuring visual planetary orbits, trivia modules, and dynamic learning tools.
+              </p>
+            </div>
+            <div class="pt-6 mt-4 border-t text-xs font-semibold" style="border-color: var(--border-color); color: var(--accent-primary);">
+              Mobile App · UI Design · Educational
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="card-style rounded-2xl p-6 flex flex-col justify-between group reveal">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold mb-4" style="color: var(--text-subtle);">
+                <span>06 · Prototype</span>
+                <span class="px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-500">3D Simulation</span>
+              </div>
+              <h3 class="text-xl font-bold group-hover:text-indigo-500 transition-colors" style="color: var(--text-main);">Hot Wheels Prototype</h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                A 3D arcade vehicle prototype exploring custom vehicle physics, speed dynamics, track collision detection, and responsive camera controls.
+              </p>
+            </div>
+            <div class="pt-6 mt-4 border-t text-xs font-semibold" style="border-color: var(--border-color); color: var(--accent-primary);">
+              Unity · C# · Vehicle Physics
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="pt-16 pb-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="card-style rounded-3xl p-8 sm:p-12 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--accent-secondary);">Get In Touch</span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" style="color: var(--text-main);">Let's Work Together.</h2>
+              <p class="text-base sm:text-lg leading-relaxed max-w-xl" style="color: var(--text-muted);">
+                I am actively seeking full-time opportunities in IT Support, Software Development, or Systems Administration. Feel free to reach out via email or connect on LinkedIn.
+              </p>
+            </div>
+
+            <div class="lg:col-span-5 space-y-3">
+              <!-- Email Card -->
+              <a href="mailto:gablmr07012003@gmail.com" class="p-4 rounded-xl border flex items-center justify-between transition-all duration-200 hover:scale-[1.02]" style="background: var(--bg-surface-elevated); border-color: var(--border-color);">
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold uppercase" style="color: var(--text-subtle);">Email</div>
+                    <div class="text-sm font-semibold truncate max-w-[200px] sm:max-w-none" style="color: var(--text-main);">gablmr07012003@gmail.com</div>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+
+              <!-- LinkedIn Card -->
+              <a href="https://www.linkedin.com/in/gabriel-mariano-774708391/" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl border flex items-center justify-between transition-all duration-200 hover:scale-[1.02]" style="background: var(--bg-surface-elevated); border-color: var(--border-color);">
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 rounded-lg bg-blue-500/10 text-blue-500">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold uppercase" style="color: var(--text-subtle);">LinkedIn</div>
+                    <div class="text-sm font-semibold" style="color: var(--text-main);">Gabriel Mariano</div>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+
+              <!-- GitHub Card -->
+              <a href="https://github.com/Gaxz-hub" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl border flex items-center justify-between transition-all duration-200 hover:scale-[1.02]" style="background: var(--bg-surface-elevated); border-color: var(--border-color);">
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 rounded-lg bg-teal-500/10 text-teal-500">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold uppercase" style="color: var(--text-subtle);">GitHub</div>
+                    <div class="text-sm font-semibold" style="color: var(--text-main);">Gaxz-hub</div>
+                  </div>
+                </div>
+                <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">© 2026 Gabriel S. Mariano · Built with HTML, CSS & JavaScript.</div>
+  <!-- Minimalist Footer -->
+  <footer class="py-8 border-t relative z-10" style="border-color: var(--border-color);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium" style="color: var(--text-subtle);">
+      <div>© 2026 Gabriel S. Mariano. All rights reserved.</div>
+      <div class="flex items-center gap-6">
+        <a href="#home" class="hover:underline">Back to top ↑</a>
+      </div>
+    </div>
   </footer>
 
   <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('show');
-      });
-    }, {threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Theme Management Logic
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
 
-    function toggleMenu(){
-      const links=document.querySelector('.nav-links');
-      if(getComputedStyle(links).display==='none'){
-        links.style.display='flex';
-        links.style.position='absolute';
-        links.style.top='72px';
-        links.style.left='0';
-        links.style.right='0';
-        links.style.padding='20px';
-        links.style.flexDirection='column';
-        links.style.background='rgba(10,13,18,.98)';
-        links.style.borderBottom='1px solid #26303d';
-      }else{
-        links.removeAttribute('style');
+    function updateIcons(theme) {
+      if (theme === 'dark') {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
       }
     }
+
+    // Initialize initial icon state based on active attribute
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateIcons(currentTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      if (newTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      localStorage.setItem('theme', newTheme);
+      updateIcons(newTheme);
+    });
+
+    // Mobile Navigation Drawer Controls
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openMobileDrawer() {
+      mobileDrawer.classList.add('open');
+      drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      drawerOverlay.classList.add('opacity-100');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileDrawer() {
+      mobileDrawer.classList.remove('open');
+      drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+      drawerOverlay.classList.remove('opacity-100');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileDrawer);
+    closeDrawerBtn.addEventListener('click', closeMobileDrawer);
+    drawerOverlay.addEventListener('click', closeMobileDrawer);
+    mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileDrawer));
+
+    // Scroll Reveal Animation via IntersectionObserver
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Skills Interactive Tag Filter
+    const filterBtns = document.querySelectorAll('#skillsFilter .filter-btn');
+    const skillTags = document.querySelectorAll('#skillsGrid .skill-tag');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset active buttons style
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.background = 'transparent';
+          b.style.color = 'var(--text-muted)';
+        });
+
+        // Set active button
+        btn.classList.add('active');
+        btn.style.background = 'var(--accent-primary)';
+        btn.style.color = '#ffffff';
+
+        const filter = btn.getAttribute('data-filter');
+
+        skillTags.forEach(tag => {
+          if (filter === 'all' || tag.getAttribute('data-category') === filter) {
+            tag.style.display = 'inline-block';
+            tag.style.opacity = '1';
+            tag.style.transform = 'scale(1)';
+          } else {
+            tag.style.opacity = '0';
+            tag.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+              if (!tag.classList.contains('active-filter')) {
+                tag.style.display = 'none';
+              }
+            }, 150);
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
