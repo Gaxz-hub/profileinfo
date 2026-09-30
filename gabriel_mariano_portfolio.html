@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel S. Mariano | IT Portfolio</title>
+  <meta name="description" content="Portfolio of Gabriel S. Mariano, Information Technology graduate and aspiring IT professional.">
+  <style>
+    :root{
+      --bg:#0a0d12;
+      --panel:#11161e;
+      --panel2:#151b24;
+      --text:#f4f7fb;
+      --muted:#9aa6b5;
+      --line:#26303d;
+      --accent:#7c5cff;
+      --accent2:#19d3ae;
+      --max:1120px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 80% 10%,rgba(124,92,255,.16),transparent 28%),
+        radial-gradient(circle at 10% 30%,rgba(25,211,174,.08),transparent 24%),
+        var(--bg);
+      color:var(--text);line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    nav{
+      position:fixed;top:0;left:0;width:100%;z-index:20;
+      background:rgba(10,13,18,.76);backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:26px;color:#c7cfda;font-size:.92rem}
+    .nav-links a:hover{color:white}
+    .menu{display:none;background:none;border:0;color:white;font-size:1.5rem}
+    section{padding:105px 0}
+    .hero{min-height:100vh;display:flex;align-items:center;padding-top:130px}
+    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:70px;align-items:center}
+    .eyebrow{color:var(--accent2);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;margin-bottom:18px}
+    h1{font-size:clamp(3rem,7vw,6rem);line-height:.98;letter-spacing:-.065em;margin-bottom:24px}
+    h1 span{background:linear-gradient(90deg,#fff,#9d91ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{color:var(--muted);font-size:1.1rem;max-width:680px}
+    .actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:10px;border:1px solid var(--line);font-weight:700;transition:.2s}
+    .btn.primary{background:white;color:#0a0d12;border-color:white}
+    .btn:hover{transform:translateY(-2px)}
+    .profile-card{
+      background:linear-gradient(145deg,rgba(124,92,255,.18),rgba(17,22,30,.9));
+      border:1px solid var(--line);border-radius:24px;padding:28px;
+      box-shadow:0 20px 80px rgba(0,0,0,.3)
+    }
+    .avatar{
+      width:100%;aspect-ratio:1;border-radius:20px;
+      display:grid;place-items:center;font-size:5rem;font-weight:900;
+      background:linear-gradient(135deg,#28203e,#10151e);
+      border:1px solid #3a3157;color:#cfc7ff;
+    }
+    .mini-info{margin-top:20px;color:var(--muted);font-size:.92rem}
+    .mini-info strong{color:white;display:block;font-size:1rem}
+    .section-head{margin-bottom:42px}
+    .section-head .eyebrow{margin-bottom:10px}
+    h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.045em}
+    .lead{color:var(--muted);max-width:700px;margin-top:10px}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .card{
+      background:rgba(17,22,30,.8);border:1px solid var(--line);border-radius:18px;padding:26px
+    }
+    .card h3{margin-bottom:10px}
+    .card p{color:var(--muted)}
+    .timeline{display:grid;gap:18px}
+    .timeline-item{position:relative;padding:24px 24px 24px 28px;border-left:2px solid #332a56;background:rgba(17,22,30,.65);border-radius:0 16px 16px 0}
+    .timeline-item:before{content:"";position:absolute;left:-7px;top:29px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+    .timeline-item .date{color:var(--accent2);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .timeline-item h3{margin:6px 0}
+    .timeline-item p{color:var(--muted)}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .tag{padding:9px 13px;border:1px solid var(--line);background:var(--panel);border-radius:999px;color:#d6dde7;font-size:.9rem}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{min-height:250px;display:flex;flex-direction:column;justify-content:space-between}
+    .project-top{display:flex;justify-content:space-between;gap:16px}
+    .project-number{font-size:.8rem;color:#626d7b}
+    .project h3{font-size:1.35rem;margin:12px 0 8px}
+    .project p{color:var(--muted)}
+    .project .stack{margin-top:20px;color:#bdb4ff;font-size:.85rem}
+    .contact{display:grid;grid-template-columns:1fr .9fr;gap:20px}
+    .contact-list{display:grid;gap:12px;margin-top:22px}
+    .contact-item{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+    .contact-item small{display:block;color:#697584;margin-bottom:3px}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#697584;font-size:.88rem}
+    .reveal{opacity:0;transform:translateY(20px);transition:.7s ease}
+    .reveal.show{opacity:1;transform:none}
+    @media(max-width:800px){
+      .nav-links{display:none}
+      .menu{display:block}
+      .hero-grid,.about-grid,.contact{grid-template-columns:1fr}
+      .hero{padding-top:110px}
+      .profile-card{max-width:420px}
+      .projects{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#home">Gabriel<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a>
+        <a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+      <button class="menu" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Information Technology Graduate</div>
+          <h1>Hi, I'm <span>Gabriel Mariano.</span></h1>
+          <p>
+            A recent Information Technology graduate from the Technological Institute of the Philippines
+            with hands-on experience in development, troubleshooting, LMS support, and software projects.
+            I’m adaptable, detail-oriented, and always willing to learn.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">View My Work</a>
+            <a class="btn" href="#contact">Let's Connect</a>
+          </div>
+        </div>
+        <div class="profile-card reveal">
+          <div class="avatar">GM</div>
+          <div class="mini-info"><strong>Gabriel S. Mariano</strong>BS Information Technology · TIP Quezon City</div>
+          <div class="mini-info"><strong>Focus</strong>IT Support · Development · Cybersecurity</div>
+          <div class="mini-info"><strong>Based in</strong>San Mateo, Rizal, Philippines</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container reveal">
+        <div class="section-head">
+          <div class="eyebrow">About Me</div>
+          <h2>Building, troubleshooting, learning.</h2>
+          <p class="lead">My experience combines software development with practical technical support and problem-solving.</p>
+        </div>
+        <div class="about-grid">
+          <div class="card">
+            <h3>Who I Am</h3>
+            <p>
+              I’m an IT graduate who enjoys learning new technologies and solving technical problems.
+              During my OJT, I worked with both a development team and an LMS support team, giving me
+              experience across development, troubleshooting, permissions, and user support.
+            </p>
+          </div>
+          <div class="card">
+            <h3>What I Bring</h3>
+            <p>
+              Adaptability, attention to detail, willingness to learn, and a practical approach to
+              troubleshooting. I’m interested in growing through real-world IT work and continuously
+              improving my technical and communication skills.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container reveal">
+        <div class="section-head">
+          <div class="eyebrow">Experience</div>
+          <h2>Hands-on experience.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="date">On-the-Job Training</div>
+            <h3>Development & LMS Support · Nephila Web Technology</h3>
+            <p>
+              Worked across development and LMS support. Contributed to a Laravel-based HR payroll/payment
+              system and helped develop its UI. Troubleshot a routing issue that prevented a UI page from
+              displaying correctly, identified the incorrect/missing route name, fixed it, and retested.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <div class="date">LMS Support</div>
+            <h3>Permissions & Technical Troubleshooting</h3>
+            <p>
+              Investigated an LMS permission issue where a teacher account could receive student-level access.
+              Helped establish the intended teacher permissions for viewing, editing, and scoring while
+              supporting the team through troubleshooting and implementation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container reveal">
+        <div class="section-head">
+          <div class="eyebrow">Technical Skills</div>
+          <h2>Tools I work with.</h2>
+        </div>
+        <div class="skills">
+          <span class="tag">Java</span><span class="tag">C / C++</span><span class="tag">C#</span>
+          <span class="tag">Python</span><span class="tag">R</span><span class="tag">PHP</span>
+          <span class="tag">SQL</span><span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>
+          <span class="tag">Laravel</span><span class="tag">React Native</span><span class="tag">Flutter</span>
+          <span class="tag">Ionic</span><span class="tag">Unity</span><span class="tag">Roblox Studio</span>
+          <span class="tag">Figma</span><span class="tag">Networking</span><span class="tag">System Administration</span>
+          <span class="tag">Windows Troubleshooting</span><span class="tag">UI/UX</span>
+          <span class="tag">Cybersecurity Fundamentals</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container reveal">
+        <div class="section-head">
+          <div class="eyebrow">Selected Projects</div>
+          <h2>Things I've built.</h2>
+          <p class="lead">A selection of academic and personal projects across games, websites, mobile applications, and learning tools.</p>
+        </div>
+        <div class="projects">
+          <article class="card project">
+            <div><div class="project-top"><span class="project-number">01</span><span>Unity / C#</span></div>
+              <h3>Arnis Arena</h3>
+              <p>A multiplayer Filipino martial-arts game based on Arnis. Players fight using Arnis sticks and progress through belt ranks after reaching the required wins.</p>
+            </div><div class="stack">Unity · C# · Game Development · UI</div>
+          </article>
+          <article class="card project">
+            <div><div class="project-top"><span class="project-number">02</span><span>Game Development</span></div>
+              <h3>The Haunted Enigma</h3>
+              <p>An interactive game project focused on exploration, puzzles, and a mystery-driven experience.</p>
+            </div><div class="stack">Unity · C#</div>
+          </article>
+          <article class="card project">
+            <div><div class="project-top"><span class="project-number">03</span><span>Web Development</span></div>
+              <h3>Likha</h3>
+              <p>A cultural clothing website concept designed to showcase Filipino-inspired clothing and visual presentation.</p>
+            </div><div class="stack">HTML · CSS · JavaScript · UI/UX</div>
+          </article>
+          <article class="card project">
+            <div><div class="project-top"><span class="project-number">04</span><span>Web Development</span></div>
+              <h3>PagesTuners</h3>
+              <p>A bookstore website project focused on browsing and presenting books through a clean web interface.</p>
+            </div><div class="stack">Web Development · UI/UX</div>
+          </article>
+          <article class="card project">
+            <div><div class="project-top"><span class="project-number">05</span><span>Educational App</span></div>
+              <h3>Solar System Learning App</h3>
+              <p>An educational application designed to make learning about the solar system more interactive.</p>
+            </div><div class="stack">Mobile Development · UI/UX</div>
+          </article>
+          <article class="card project">
+            <div><div class="project-top"><span class="project-number">06</span><span>Prototype</span></div>
+              <h3>Hot Wheels Prototype</h3>
+              <p>A game prototype exploring vehicle-focused gameplay and interactive 3D environments.</p>
+            </div><div class="stack">Unity · C# · Prototyping</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="section-head">
+          <div class="eyebrow">Contact</div>
+          <h2>Let's connect.</h2>
+          <p class="lead">Interested in discussing an IT opportunity, project, or collaboration? Replace the placeholders below with your actual contact details.</p>
+        </div>
+        <div class="contact">
+          <div class="card">
+            <h3>Currently growing.</h3>
+            <p>
+              I’m looking for opportunities where I can apply my IT background, develop stronger technical
+              skills, contribute to a team, and gain meaningful industry experience.
+            </p>
+          </div>
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:YOUR_EMAIL@example.com"><small>Email</small>YOUR_EMAIL@example.com</a>
+            <a class="contact-item" href="#" onclick="return false;"><small>LinkedIn</small>Add your LinkedIn profile</a>
+            <a class="contact-item" href="#" onclick="return false;"><small>GitHub</small>Add your GitHub profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Gabriel S. Mariano · Built with HTML, CSS & JavaScript.</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function toggleMenu(){
+      const links=document.querySelector('.nav-links');
+      if(getComputedStyle(links).display==='none'){
+        links.style.display='flex';
+        links.style.position='absolute';
+        links.style.top='72px';
+        links.style.left='0';
+        links.style.right='0';
+        links.style.padding='20px';
+        links.style.flexDirection='column';
+        links.style.background='rgba(10,13,18,.98)';
+        links.style.borderBottom='1px solid #26303d';
+      }else{
+        links.removeAttribute('style');
+      }
+    }
+  </script>
+</body>
+</html>
